@@ -25,21 +25,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // 1. Initialize DataBinding
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        // 2. Initialize ViewModel
         val movieRepository = (application as MovieApplication).movieRepository
         movieViewModel = MovieViewModel(movieRepository)
 
-        // 3. Bind ViewModel to layout
         binding.viewModel = movieViewModel
         binding.lifecycleOwner = this
-
-        // 4. Set RecyclerView adapter
         binding.movieList.adapter = movieAdapter
-
-        // Note: lifecycleScope.launch block removed as per instruction
     }
 
     private fun openMovieDetails(movie: Movie) {
